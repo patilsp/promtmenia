@@ -1,5 +1,5 @@
 "use client";
-
+import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -30,7 +30,7 @@ const Nav = () => {
           height={30}
           className='object-contain'
         />
-        <p className='logo_text'>Promptmenia.ai</p>
+        <p className='logo_text'>Promptmenia</p>
       </Link>
 
       {/* Desktop Navigation */}
@@ -77,9 +77,7 @@ const Nav = () => {
       {session?.user ? (
 
         <div className='flex'>
-          <Link href='/create-prompt' className="btn btn-sm black_btn mr-2">
-            Create Prompt
-          </Link>
+         
           <Image
             src="assets/images/bell.svg"
             width={37}
@@ -128,9 +126,14 @@ const Nav = () => {
             >
               <div className="absolute right-0 z-10 mt-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="py-1" role="none">
+                <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
+                  <Link href='/create-prompt' className="dropdown_link">
+                    Create Prompt
+                  </Link>
+                  </a>
                   
                   <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
-                      <Link
+                    <Link
                     href='/'
                     className='dropdown_link'
                     onClick={() => setToggleDropdown(false)}
@@ -139,7 +142,7 @@ const Nav = () => {
                   </Link>
                   </a>
                   <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-1">
-                      <Link
+                  <Link
                     href='/profile'
                     className='dropdown_link'
                     onClick={() => setToggleDropdown(false)}
@@ -174,7 +177,7 @@ const Nav = () => {
                 onClick={() => {
                   signIn(provider.id);
                 }}
-                className='black_btn'
+                className='bg-slate-900 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 text-white font-semibold h-8 px-8 rounded-lg w-full flex items-center justify-center sm:w-auto dark:bg-sky-500 dark:highlight-white/20 dark:hover:bg-sky-400'
               >
                 Sign in
               </button>
@@ -187,9 +190,7 @@ const Nav = () => {
       <div className='sm:hidden flex relative'>
         {session?.user ? (
           <div className='flex'>
-            <Link href='/create-prompt' className='black_btn mr-1'>
-              Create
-            </Link>
+           
             <div className="avatar">
               <Image
                 src={session?.user.image}
@@ -204,6 +205,11 @@ const Nav = () => {
           
               <div className="absolute right-0 z-10 mt-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                 <div class="py-1" role="none">
+                <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
+                  <Link href='/create-prompt' className='dropdown_link'>
+                    Create Prompt
+                  </Link>
+                </a>
                   
                   <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
                       <Link

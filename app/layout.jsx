@@ -6,7 +6,7 @@ import { Toaster } from "react-hot-toast"
 
 export const metadata = {
   title: "Promptmenia",
-  description: "Discover & Share AI Prompts",
+  description: "Join the Promptmenia Journey: Explore, Create, Share! ",
 };
 
 const RootLayout = ({ children }) => (
