@@ -1,17 +1,14 @@
-import Image from "next/image";
+"use client";
+import React from 'react';
+import Lottie from "lottie-react";
+import animationData from "../assets/loading.json";
 
-const Loading = () => {
+export default function Loading() {
   return (
-    <div className='w-full flex-center'>
-      <Image
-        src='assets/icons/loader.svg'
-        width={50}
-        height={50}
-        alt='loader'
-        className='object-contain'
-      />
+    <div className="flex h-screen items-center justify-center">
+      <div style={{ width: '200px', height: '200px' }}>
+        <Lottie animationData={animationData} />
+      </div>
     </div>
   );
-};
-
-export default Loading;
+}

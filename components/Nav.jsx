@@ -6,6 +6,9 @@ import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { motion } from "framer-motion";
 
+import Lottie from "lottie-react";
+import animationData from "app/assets/logo.json";
+
 const Nav = () => {
   const { data: session } = useSession();
 
@@ -23,18 +26,14 @@ const Nav = () => {
   return (
     <nav className='flex-between w-full mb-16 pt-3'>
       <Link href='/' className='flex gap-2 flex-center'>
-        <Image
-          src='/assets/images/logo.svg'
-          alt='logo'
-          width={30}
-          height={30}
-          className='object-contain'
-        />
+          <div style={{ width: '50px', height: '50px' }}>
+            <Lottie animationData={animationData} />
+          </div>
         <p className='logo_text'>Promptmenia</p>
       </Link>
 
       {/* Desktop Navigation */}
-      {/* <div className='sm:flex hidden'>
+      {/*<div className='sm:flex hidden'>
         {session?.user ? (
           <div className='flex gap-3 md:gap-5'>
             <Link href='/create-prompt' className='black_btn'>
