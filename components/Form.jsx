@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button"
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
@@ -51,13 +52,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             Cancel
           </Link>
 
-          <button
+          <Button
             type='submit'
             disabled={submitting}
-            className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'
+            className='px-5 py-1.5 text-sm bg-black text-white'
           >
             {submitting ? `${type}ing...` : type}
-          </button>
+          </Button>
         </div>
       </form>
     </section>

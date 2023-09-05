@@ -4,6 +4,7 @@ import Nav from "@components/Nav";
 import Footer from "@components/Footer";
 import Provider from "@components/Provider";
 import { Toaster } from "react-hot-toast"
+import { SiteHeader } from "@/components/site-header"
 
 export const metadata = {
   title: "Promptmenia",
@@ -19,8 +20,10 @@ const RootLayout = ({ children }) => (
         </div>
 
         <main className='app'>
-          <Nav />
+          {/* <Nav /> */}
           <Toaster />
+
+          <SiteHeader />
           {children}
           <Footer />
         </main>

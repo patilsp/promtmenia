@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import PromptCard from "./PromptCard";
 import { motion } from "framer-motion"
@@ -9,11 +9,18 @@ const PromptCardList = ({ data, handleTagClick }) => {
   return (
     <div className='mt-12 prompt_layout'>
       {data.map((post) => (
-        <PromptCard
+        <motion.div
           key={post._id}
-          post={post}
-          handleTagClick={handleTagClick}
-        />
+          className="card"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ ease: "easeOut" }}
+        >
+          <PromptCard
+            post={post}
+            handleTagClick={handleTagClick}
+          />
+        </motion.div>
       ))}
     </div>
   );
@@ -21,21 +28,47 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
   const [allPosts, setAllPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Search states
   const [searchText, setSearchText] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
   const [searchedResults, setSearchedResults] = useState([]);
 
+  // Ref for tracking scroll position
+  const scrollRef = useRef(null);
+
   const fetchPosts = async () => {
+    setIsLoading(true);
     const response = await fetch("/api/prompt");
     const data = await response.json();
 
-    setAllPosts(data);
+    setAllPosts((prevPosts) => [...prevPosts, ...data]);
+    setIsLoading(false);
+  };
+
+  const handleScroll = () => {
+    const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10 && !isLoading) {
+      fetchPosts();
+    }
   };
 
   useEffect(() => {
     fetchPosts();
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (scrollRef.current) {
+        scrollRef.current.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
 
   const filterPrompts = (searchtext) => {
@@ -69,30 +102,30 @@ const Feed = () => {
   };
 
   return (
-    
-      <section className='feed'>
-        <form className='relative w-full flex-center'>
-          <input
-            type='text'
-            placeholder='Search for a tag or a username'
-            value={searchText}
-            onChange={handleSearchChange}
-            required
-            className='search_input peer '
-          />
-        </form>
+    <section className='feed' ref={scrollRef}>
+      <form className='relative w-full flex-center'>
+        <input
+          type='text'
+          placeholder='Search for a tag or a username'
+          value={searchText}
+          onChange={handleSearchChange}
+          required
+          className='search_input peer '
+        />
+      </form>
 
-        {/* All Prompts */}
-        {searchText ? (
-          <PromptCardList
-            data={searchedResults}
-            handleTagClick={handleTagClick}
-          />
-        ) : (
-          <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
-        )}
-      </section>
-   
+      {/* All Prompts */}
+      {searchText ? (
+        <PromptCardList
+          data={searchedResults}
+          handleTagClick={handleTagClick}
+        />
+      ) : (
+        <PromptCardList data={allPosts} handleTagClick={handleTagClick} />
+      )}
+
+      {isLoading && <p>Loading...</p>}
+    </section>
   );
 };
 
