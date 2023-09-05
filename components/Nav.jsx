@@ -8,6 +8,23 @@ import { motion } from "framer-motion";
 
 import Lottie from "lottie-react";
 import animationData from "app/assets/logo.json";
+import UserNav from "@components/user-nav";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar"
+import { Button } from "@/registry/new-york/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/registry/new-york/ui/dropdown-menu"
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -25,12 +42,18 @@ const Nav = () => {
 
   return (
     <nav className='flex-between w-full'>
+  
+      
    
       <div className='flex relative'>
         {session?.user ? (
           <div className='flex'>
-           
-            <div className="avatar">
+
+      <DropdownMenu>
+        <DropdownMenuTrigger >
+         
+            
+          <div className="avatar">
               <Image
                 src={session?.user.image}
                 width={37}
@@ -40,9 +63,32 @@ const Nav = () => {
                 onClick={() => setToggleDropdown(!toggleDropdown)}
               />
             </div>
-            {toggleDropdown && (
-          
-              <div className="absolute right-0 z-10 mt-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        
+        </DropdownMenuTrigger>
+        
+        <DropdownMenuContent forceMount>
+         
+
+          <div className="absolute right-0 z-10 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              
+          <DropdownMenuLabel className="font-normal">
+            <div className="flex gap-1 space-y-1 ml-1 p-1">
+            <Image
+                src={session?.user.image}
+                width={37}
+                height={37}
+                className='rounded-full'
+                alt='profile'
+              />
+              <div className="flex flex-col">
+                <p className="text-sm font-medium leading-none">{session?.user.name}</p>
+                <p className="text-xs leading-none text-muted-foreground">
+                {session?.user.email}
+                </p>
+              </div>
+            </div>
+          </DropdownMenuLabel>
+          <DropdownMenuSeparator />
                 <div class="py-1" role="none">
                 <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
                   <Link href='/create-prompt' className='dropdown_link'>
@@ -82,7 +128,12 @@ const Nav = () => {
                   </button>
                 </div>
               </div>
-            )}
+
+      
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+
           </div>
         ) : (
           <>
