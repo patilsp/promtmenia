@@ -9,6 +9,9 @@ import { SiteHeader } from "@/components/site-header"
 export const metadata = {
   title: "Promptmenia",
   description: "Join the Promptmenia Journey: Explore, Create, Share AI-Powered Prompts! ",
+  icons: {
+    icon: "/assets/images/logo1.svg",
+  },
 };
 
 const RootLayout = ({ children }) => (
