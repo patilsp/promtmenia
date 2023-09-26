@@ -2,7 +2,7 @@
 
 import "@uploadthing/react/styles.css";
 import { UploadDropzone } from "@uploadthing/react";
-import { OurFileRouter } from "../api/uploadthing/core";
+import { OurFileRouter } from "@api/uploadthing/core";
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 
@@ -12,19 +12,18 @@ export default function UploadDnD() {
         fileKey: string;
     }[]>([]);
 
-    const [imageurl, setImageUrl] = useState(""); // State to store the image URL
+    const [imageurl, setImageUrl] = useState(""); 
 
     useEffect(() => {
-        // Fetch the image URL when images change (when a new image is uploaded)
         if (images.length > 0) {
-            const fileUrl = images[0].fileUrl; // Assuming you want the first uploaded image's URL
+            const fileUrl = images[0].fileUrl;
             setImageUrl(fileUrl);
         }
     }, [images]);
 
     const title = images.length ? (
         <>
-            <p>Upload Complete!</p>
+            <p className="text-center">Upload Complete!</p>
         </>
     ) : null
 
