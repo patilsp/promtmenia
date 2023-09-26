@@ -89,14 +89,14 @@ const Nav = () => {
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-                <div class="py-1" role="none">
-                <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
+                <div className="py-1" role="none">
+                <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
                   <Link href='/create-prompt' className='dropdown_link'>
                     Create Prompt
                   </Link>
                 </a>
                   
-                  <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
+                  <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
                       <Link
                     href='/'
                     className='dropdown_link'
@@ -105,7 +105,7 @@ const Nav = () => {
                     Dashboard
                   </Link>
                   </a>
-                  <a class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-1">
+                  <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-1">
                       <Link
                     href='/profile'
                     className='dropdown_link'
@@ -114,7 +114,7 @@ const Nav = () => {
                     My Profile
                   </Link>
                   </a>
-                  <a class="text-gray-700 block px-4 py-2 text-sm dropdown_link" role="menuitem" tabIndex="-1" id="menu-item-2">Settings</a>
+                  <a className="text-gray-700 block px-4 py-2 text-sm dropdown_link" role="menuitem" tabIndex="-1" id="menu-item-2">Settings</a>
                   <hr className="mt-2 mb-2" />
                   <button
                     type='button'
