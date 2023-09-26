@@ -14,10 +14,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
   const [copied, setCopied] = useState("");
 
   const handleProfileClick = () => {
-    console.log(post);
-
     if (post.creator?._id === session?.user.id) return router.push("/profile");
-
     router.push(`/profile/${post.creator?._id}?name=${post.creator?.username}`);
   };
 
@@ -65,7 +62,19 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
               height={12}
             />
           </div>
-        </div>
+        </div>   
+
+      <div className='my-4'>  
+        <Image
+          src={post.imagePath}
+          alt='post_image'
+          width={500} 
+          height={300}
+          className="rounded-sm"
+        />
+      </div>
+
+
 
         <p className='my-4 font-satoshi text-sm text-gray-700'>{post.prompt}</p>
         <p

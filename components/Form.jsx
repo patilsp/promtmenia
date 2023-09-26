@@ -1,7 +1,8 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
+import Upload from "@/components/UploadDnD";
 
-const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+const Form = ({ type, post, setPost, submitting, handleSubmit, imagePath, fileUrl }) => {
   return (
     <section className='w-full max-w-full flex-center flex-col mb-5'>
       <h1 className='head_text text-center'>
@@ -46,7 +47,30 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
             className='form_input'
           />
         </label>
+        <div className="w-full">
+          <Upload onImageUpload={(fileUrl) => {
+          
+            setPost({ ...post, imagePath: fileUrl });
+          }} />
+        </div>
+          <label>
+            <span className='font-satoshi font-semibold text-base text-gray-700'>
+              Image Path
+            </span>
+            <input
 
+              value={post.imagePath}
+              onChange={(e) => setPost({ ...post, imagePath: e.target.value })}
+              type='text'
+              placeholder='Image Path'
+              required
+              className='form_input'
+              
+            />
+          </label>
+
+
+      
         <div className='flex-end mx-3 mb-5 gap-4'>
           <Link href='/' className='text-gray-500 text-sm'>
             Cancel

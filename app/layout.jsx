@@ -2,7 +2,7 @@ import "@styles/globals.css";
 
 import Nav from "@components/Nav";
 import Footer from "@components/Footer";
-import Provider from "@components/Provider";
+import SessionProvider from "@components/Provider";
 import { Toaster } from "react-hot-toast"
 import { SiteHeader } from "@/components/site-header"
 
@@ -17,7 +17,7 @@ export const metadata = {
 const RootLayout = ({ children }) => (
   <html lang='en'>
     <body>
-      <Provider>
+      <SessionProvider>
         <div className='main'>
           <div className='gradient' />
         </div>
@@ -31,7 +31,7 @@ const RootLayout = ({ children }) => (
           <Footer />
         </main>
 
-      </Provider>
+      </SessionProvider>
     </body>
   </html>
 );

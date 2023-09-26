@@ -102,7 +102,7 @@ const Feed = () => {
   };
 
   return (
-    <section className='feed' ref={scrollRef}>
+    <section className='feed p-4' ref={scrollRef}>
       <form className='relative w-full flex-center'>
         <input
           type='text'
