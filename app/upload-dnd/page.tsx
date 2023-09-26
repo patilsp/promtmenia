@@ -12,7 +12,7 @@ export default function UploadDnD() {
         fileKey: string;
     }[]>([]);
 
-    const [imageurl, setImageUrl] = useState(""); 
+    const [imageUrl, setImageUrl] = useState("");
 
     useEffect(() => {
         if (images.length > 0) {
@@ -58,8 +58,8 @@ export default function UploadDnD() {
                 }}
             />
 
-            {fileUrl}
-
+            {imageUrl}
+            
             {imgList}
         </main>
     );
