@@ -8,13 +8,13 @@ import { motion } from "framer-motion";
 
 import Lottie from "lottie-react";
 import animationData from "app/assets/logo.json";
-import UserNav from "@components/user-nav";
+import UserNav from "@/components/user-nav";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/new-york/ui/avatar"
-import { Button } from "@/registry/new-york/ui/button"
+} from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -24,7 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 
 const Nav = () => {
   const { data: session } = useSession();
@@ -41,7 +41,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className='flex-between w-full'>
+    <nav>
   
       
    

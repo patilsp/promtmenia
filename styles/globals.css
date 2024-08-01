@@ -158,19 +158,19 @@
 }
 
 .head_text {
-  @apply mt-0 md:text-5xl font-extrabold leading-[1.15] text-black sm:text-4xl;
+  @apply mt-0 text-xl md:text-5xl font-extrabold leading-[1.15] text-black;
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply text-xl font-semibold bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
 }
 
 .green_gradient {
-  @apply bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
+  @apply text-xl font-semibold bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent;
 }
 
 .blue_gradient {
-  @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+  @apply text-xl font-semibold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
 }
 
 .desc {
@@ -186,9 +186,8 @@
 }
 
 .glassmorphism {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
+  @apply rounded-xl border border-gray-200 bg-white/20 dark:bg-slate-900 dark:text-white shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-5;
 }
-
 .prompt_layout {
   @apply space-y-6 py-8 sm:columns-2 sm:gap-6 xl:columns-3;
 }
@@ -223,7 +222,7 @@
 /* PromptCard Component */
 .prompt_card {
   box-shadow: 0 5px 10px rgba(0,0,0,.12);
-  @apply flex-1 break-inside-avoid rounded-lg border border-gray-300 bg-white/20 bg-clip-padding p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
+  @apply flex-1 break-inside-avoid rounded-lg shadow bg-white/20 bg-clip-padding dark:bg-slate-800 dark:text-white p-6 pb-4 backdrop-blur-lg backdrop-filter md:w-[360px] w-full h-fit;
 }
 
 .flex-center {
@@ -273,4 +272,10 @@
   to {
     background-position: 200% center;
   }
+}
+
+.glassmorphism{
+    /* background-color: transparent; */
+    border: 2px solid white !important;
+    backdrop-filter: blur(8px);
 }

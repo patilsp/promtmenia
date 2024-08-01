@@ -8,7 +8,7 @@ const Home = () => (
     initial={{ opacity: 0, scale: 0.8 }}
     transition={{ ease: "easeOut" }}
   >
-  <section className='w-full flex-center flex-col'>
+  <section className='w-full flex-center flex-col dark:bg-slate-900 dark:text-white'>
     <h1 className='animate mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center'>
       Discover & Share
       <br />

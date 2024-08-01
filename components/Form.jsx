@@ -4,8 +4,8 @@ import Upload from "@/components/UploadDnD";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit, imagePath, fileUrl }) => {
   return (
-    <section className='w-full max-w-full flex-center flex-col mb-5'>
-      <h1 className='head_text text-center'>
+    <section className='w-full max-w-full flex-center my-10 px-2 flex-col mb-5'>
+      <h1 className='head_text text-xl text-center'>
         <span className='fs-36 green_gradient'>{type} Post</span>
       </h1>
       <p className='desc text-center max-w-md'>
