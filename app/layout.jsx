@@ -32,7 +32,7 @@ const RootLayout = ({ children }) => (
           <div className='gradient' />
         </div>
 
-        <main className='app dark:bg-black'>
+        <main className='dark:bg-black'>
          
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
