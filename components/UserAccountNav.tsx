@@ -58,8 +58,8 @@ const UserAccountNav = () => {
             </div>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="p-2" asChild>
-              <Link href='/dashboard'>
-                Dashboard
+              <Link href='/profile'>
+              Profile
                 <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
@@ -85,7 +85,7 @@ const UserAccountNav = () => {
             </DropdownMenuItem>
             <DropdownMenuItem className="p-2" asChild>
               <Link href='/forms'>
-                Profile Settings
+                 Settings
                 <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
               </Link>
             </DropdownMenuItem>
