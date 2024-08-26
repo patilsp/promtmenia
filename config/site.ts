@@ -10,21 +10,10 @@ export const siteConfig = {
       href: "/",
     },
     {
-      title: "Dashboard",
-      href: "/dashboard",
+      title: "Create Post",
+      href: "/create-post",
     },
-    {
-      title: "Customers",
-      href: "/customers",
-    },
-    {
-      title: "Products",
-      href: "/products",
-    },
-    {
-      title: "Tasks",
-      href: "/tasks",
-    },
+    
      {
       title: "Settings",
       href: "/forms",

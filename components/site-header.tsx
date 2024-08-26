@@ -1,38 +1,50 @@
 "use client";
 
-import Link from "next/link"
+import Link from "next/link";
+import Image from "next/image";
+import { siteConfig } from "@/config/site";
+import { cn } from "@/lib/utils";
+import { CommandMenu } from "@/components/command-menu";
+import { Icons } from "@/components/icons";
+import { MainNav } from "@/components/main-nav";
+import { MobileNav } from "@/components/mobile-nav";
+import { ModeToggle } from "@/components/mode-toggle";
+import { Button } from "@/components/ui/button";
+import { useRouter } from 'next/navigation'
+import { NavbarDemo } from "@/components/NavbarDemo"
+import UserAccountNav from '@/components/UserAccountNav';
+// import logoImage from '../public/images/logo.webp';
 
-import { siteConfig } from "@/config/site"
-
-import { CommandMenu } from "@/components/command-menu"
-import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
-import { MobileNav } from "@/components/mobile-nav"
-import { ModeToggle } from "@/components/mode-toggle"
-import { Button } from "@/components/ui/button"
-import Nav from "@/components/Nav"
-import { motion } from "framer-motion"
-
-import Lottie from "lottie-react"
-import animationData from "app/assets/logo.json"
 
 export function SiteHeader() {
 
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur dark:bg-slate-950 dark:text-white">
-
-     
-        
-        <div className="flex items-center justify-between space-x-2 px-2 md:justify-end">
-            <Link href='/' className='flex gap-2 flex-center'>
-              <div style={{ width: '50px', height: '50px' }}>
-                <Lottie animationData={animationData} />
-              </div>
-            <p className='logo_text'>Promptmenia</p>
+    <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-black dark:text-white">
+      <div className="flex justify-between max-w-full min-w-full w-full h-14 items-center px-2">
+        <div className="mt-1">
+          <Link href="/">
+            <Image
+              src="/assets/images/logo.svg"
+              className="object-contain "
+              width={25}
+              height={25}
+              alt="logo image"            
+            />
+            
           </Link>
-          {/* <MobileNav /> */}
-            <Nav />
         </div>
+
+        <div className="flex items-center justify-end gap-2">          
+          <ModeToggle />
+          <div className="mt-2 hidden md:block">
+            <CommandMenu />
+          </div>
+        <div className="mt-1">
+          <UserAccountNav />            
+        </div>
+          
+        </div>
+      </div>
     </header>
-  )
+  );
 }

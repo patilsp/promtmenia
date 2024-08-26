@@ -15,7 +15,7 @@ export const metadata = {
   title: "Promptmenia",
   description: "Join the Promptmenia Journey: Explore, Create, Share AI-Powered Prompts! ",
   icons: {
-    icon: "/assets/images/logo1.svg",
+    icon: "/assets/images/logo.svg",
   },
 };
 
@@ -28,11 +28,11 @@ const RootLayout = ({ children }) => (
           )}
         >
       <SessionProvider>
-        <div className='main dark:bg-slate-900'>
+        <div className='main dark:bg-black'>
           <div className='gradient' />
         </div>
 
-        <main className='app dark:bg-slate-900'>
+        <main className='app dark:bg-black'>
          
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
