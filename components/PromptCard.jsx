@@ -13,6 +13,8 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
 
   const [copied, setCopied] = useState("");
 
+  const profileImage = post.creator?.image || '/assets/images/avatar.jpg'
+
   const handleProfileClick = () => {
     if (post.creator?._id === session?.user.id) return router.push("/profile");
     router.push(`/profile/${post.creator?._id}?name=${post.creator?.username}`);
@@ -33,21 +35,21 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
             onClick={handleProfileClick}
           >
             <Image
-              src={post.creator?.image}
+              src={profileImage}
               alt='user_image'
               width={30}
               height={30}
               className='rounded-full object-contain'
             />
 
-            {/* <div className='flex flex-col'>
+            <div className='flex flex-col'>
               <h3 className='font-satoshi font-semibold text-gray-900'>
                 {post.creator?.username}
               </h3>
               <p className='font-inter text-sm text-gray-500'>
                 {post.creator?.email}
               </p>
-            </div> */}
+            </div>
           </div>
 
           <div className='copy_btn' onClick={handleCopy}>
