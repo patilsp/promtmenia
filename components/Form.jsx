@@ -14,7 +14,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, imagePath, fileUr
   return (
     <section className='w-full max-w-full flex-center px-2 flex-col mb-5'>
         <div className="container mx-auto py-10">
-          <Card className="w-full max-w-2xl mx-auto">
+          <Card className="glassmorphism w-full max-w-2xl mx-auto">
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-center">
                 <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
