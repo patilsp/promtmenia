@@ -19,8 +19,8 @@ import UserAccountNav from '@/components/UserAccountNav';
 export function SiteHeader() {
 
   return (
-    <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-black dark:text-white">
-      <div className="flex justify-between max-w-full min-w-full w-full h-14 items-center px-2">
+    <header className="supports-backdrop-blur:bg-background/60 sticky top-0 z-50 w-full shadow backdrop-blur dark:bg-slate-900 dark:text-white">
+      <div className="max-w-70 flex justify-between w-full h-14 items-center px-2">
         <div className="mt-1">
           <Link href="/">
             <Image

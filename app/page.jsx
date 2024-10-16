@@ -10,12 +10,12 @@ const Home = () => (
   >
   <section className='w-full flex-center flex-col dark:bg-slate-900 dark:text-white'>
     <h1 className='animate mb-2 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center'>
-      Discover & Share
+        Discover & Share 
       <br />
-      <span className='orange_gradient text-center'> AI-Powered Prompts</span>
+      <span className='orange_gradient text-center'> Developer Tools</span>
     </h1>
     <p className='desc text-center'>
-      Promptmenia is an open-source AI prompting tool for Unlocking Creativity with AI-Powered Prompts: Your Gateway to Inspiring Ideas and Collaborative Imagination.
+    Promptmenia is an open-source platform for developers to explore and share posts about various tools. From cutting-edge frameworks to essential coding resources helping you stay updated and boost your productivity.
     </p>
     <Feed />
   </section>

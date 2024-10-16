@@ -26,7 +26,7 @@ export function SiteFooter() {
             <span className="sr-only">posts</span>
           </a>
           
-          <a href="/create-prompt" data-tooltip-target="tooltip-post" type="button" className="group inline-flex flex-col items-center justify-center p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
+          <a href="/create-post" data-tooltip-target="tooltip-post" type="button" className="group inline-flex flex-col items-center justify-center p-2 hover:bg-gray-50 dark:hover:bg-gray-800">
             <Edit className="mb-1 size-6 text-gray-500 group-hover:text-blue-600 dark:text-gray-400 dark:group-hover:text-blue-500" />
             <span className="sr-only">New Complaint</span>
           </a>
