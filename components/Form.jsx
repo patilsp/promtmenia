@@ -18,20 +18,20 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, imagePath, fileUr
             <CardHeader>
               <CardTitle className="text-2xl font-bold text-center">
                 <span className="bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
-                  {type} Post
+                  {type} Prompt
                 </span>
               </CardTitle>
               <CardDescription className="text-center">
-                {type} and share amazing tools with the world
+                {type} and share ai prompts with the world
               </CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
-                  <Label htmlFor="prompt">Post Description</Label>
+                  <Label htmlFor="prompt">Prompt Description</Label>
                   <Textarea
                     id="prompt"
-                    placeholder="Write your post here"
+                    placeholder="Write your prompt here"
                     value={post.prompt || ''}
                     onChange={(e) => setPost({ ...post, prompt: e.target.value })}
                     required
@@ -40,9 +40,9 @@ const Form = ({ type, post, setPost, submitting, handleSubmit, imagePath, fileUr
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="tag">
-                    Post Tags
+                    Prompt Tags
                     <span className="text-sm text-muted-foreground ml-1">
-                      (#product, #webdevelopment, #idea, etc.)
+                      (#AI, #webdevelopment, #idea, etc.)
                     </span>
                   </Label>
                   <Input
