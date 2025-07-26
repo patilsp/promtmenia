@@ -2,13 +2,16 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { User, Settings, LogOut, Plus, HelpCircle, Mail } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-  DropdownMenuShortcut
+  DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu"
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 import { useEffect, useState } from "react";
@@ -28,67 +31,73 @@ const UserAccountNav = () => {
   return (
     <>
       {session?.user ? (
-        <DropdownMenu className="p-1 mt-1">
-          <DropdownMenuTrigger className="p-1">
-            <Image
-              src={session.user.image || "/assets/images/avatar.jpg"}
-              width={30}
-              height={30}
-              className='rounded-full border-[2px] border-white'
-              alt='profile'
-            />
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center space-x-2 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+            >
+              <Image
+                src={session.user.image || "/assets/images/avatar.jpg"}
+                width={32}
+                height={32}
+                className='rounded-full border-2 border-gray-200 dark:border-gray-700'
+                alt='profile'
+              />
+            </motion.button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='h-[300px] w-[245px]' align='end'>
-            <div className='flex items-center justify-start gap-2 p-1'>
-              <div className='flex flex-col leading-none'>
-                <div className='flex items-center gap-1'>
-                  <Image
-                    src={session.user.image || "/avatars/02.png"}
-                    width={37}
-                    height={37}
-                    className='rounded-full'
-                    alt='profile'
-                  />
-                  <div className='flex flex-col'>
-                    <h1 className='text-base font-bold'>{session.user.name}</h1>
-                    <p className='text-sm font-medium'>{session.user.email}</p>
-                  </div>
-                </div>  
+          <DropdownMenuContent className='w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl' align='end'>
+            <DropdownMenuLabel className="p-4">
+              <div className="flex items-center space-x-3">
+                <Image
+                  src={session.user.image || "/assets/images/avatar.jpg"}
+                  width={48}
+                  height={48}
+                  className="rounded-full border-2 border-gray-200 dark:border-gray-600"
+                  alt="Profile"
+                />
+                <div>
+                  <p className="font-semibold text-gray-900 dark:text-white">
+                    {session.user.username || session.user.name}
+                  </p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">
+                    {session.user.email}
+                  </p>
+                </div>
               </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
+            
+            <div className="p-2">
+              <DropdownMenuItem asChild>
+                <Link href="/profile" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                  <User className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  <span>My Profile</span>
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuItem asChild>
+                <Link href="/create-prompt" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                  <Plus className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  <span>Create Prompt</span>
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuItem asChild>
+                <Link href="/settings" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                  <Settings className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  <span>Settings</span>
+                </Link>
+              </DropdownMenuItem>
+              
+              <DropdownMenuItem asChild>
+                <Link href="/help" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                  <HelpCircle className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                  <span>Help & FAQ</span>
+                </Link>
+              </DropdownMenuItem>
             </div>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/profile'>
-              Profile
-                <DropdownMenuShortcut>⌘D</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/create-post'>
-                Create Post
-                <DropdownMenuShortcut>⌘C</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
-           
-       
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/FAQ'>
-                FAQ
-                <DropdownMenuShortcut>⌘F</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/contact-us'>
-                Contact Us
-                <DropdownMenuShortcut>⌘T</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem className="p-2" asChild>
-              <Link href='/forms'>
-                 Settings
-                <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-              </Link>
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className='h-8 w-full cursor-pointer bg-black text-center font-bold text-white dark:bg-white dark:text-slate-700'

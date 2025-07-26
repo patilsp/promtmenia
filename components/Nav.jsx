@@ -4,34 +4,24 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { User, Settings, LogOut, Plus, Home, Search, Bell } from "lucide-react";
 
 import Lottie from "lottie-react";
 import animationData from "app/assets/logo.json";
-import UserNav from "@/components/user-nav";
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
 const Nav = () => {
   const { data: session } = useSession();
-
   const [providers, setProviders] = useState(null);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [notificationDropdown, setNotificationDropdown] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -41,119 +31,183 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav>
-  
-      
-   
-      <div className='flex relative'>
-        {session?.user ? (
-          <div className='flex'>
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo Section */}
+          <motion.div 
+            className="flex items-center space-x-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          >
+            <Link href="/" className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl flex items-center justify-center">
+                <Lottie 
+                  animationData={animationData} 
+                  className="w-6 h-6" 
+                  loop={true}
+                />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                PromptMenia
+              </span>
+            </Link>
+          </motion.div>
 
-      <DropdownMenu>
-        <DropdownMenuTrigger >
-         
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-1">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link href="/">
+                <Button variant="ghost" className="flex items-center space-x-2 text-gray-600 hover:text-purple-600 dark:text-gray-300 dark:hover:text-purple-400">
+                  <Home className="w-4 h-4" />
+                  <span>Home</span>
+                </Button>
+              </Link>
+            </motion.div>
             
-          <div className="avatar">
-              <Image
-                src={session?.user.image}
-                width={37}
-                height={37}
-                className='rounded-full'
-                alt='profile'
-                onClick={() => setToggleDropdown(!toggleDropdown)}
-              />
-            </div>
-        
-        </DropdownMenuTrigger>
-        
-        <DropdownMenuContent forceMount>
-         
-
-          <div className="absolute right-0 z-10 w-64 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-              
-          <DropdownMenuLabel className="font-normal">
-            <div className="flex gap-1 space-y-1 ml-1 p-1">
-            <Image
-                src={session?.user.image}
-                width={37}
-                height={37}
-                className='rounded-full'
-                alt='profile'
-              />
-              <div className="flex flex-col">
-                <p className="text-sm font-medium leading-none">{session?.user.name}</p>
-                <p className="text-xs leading-none text-muted-foreground">
-                {session?.user.email}
-                </p>
-              </div>
-            </div>
-          </DropdownMenuLabel>
-          <DropdownMenuSeparator />
-                <div className="py-1" role="none">
-                <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
-                  <Link href='/create-prompt' className='dropdown_link'>
+            {session?.user && (
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link href="/create-prompt">
+                  <Button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300">
+                    <Plus className="w-4 h-4 mr-2" />
                     Create Prompt
-                  </Link>
-                </a>
-                  
-                  <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-0">
-                      <Link
-                    href='/'
-                    className='dropdown_link'
-                    onClick={() => setToggleDropdown(false)}
-                  >
-                    Dashboard
-                  </Link>
-                  </a>
-                  <a className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabIndex="-1" id="menu-item-1">
-                      <Link
-                    href='/profile'
-                    className='dropdown_link'
-                    onClick={() => setToggleDropdown(false)}
-                  >
-                    My Profile
-                  </Link>
-                  </a>
-                  <a className="text-gray-700 block px-4 py-2 text-sm dropdown_link" role="menuitem" tabIndex="-1" id="menu-item-2">Settings</a>
-                  <hr className="mt-2 mb-2" />
-                  <button
-                    type='button'
-                    onClick={() => {
-                      setToggleDropdown(false);
-                      signOut();
-                    }}
-                    className='text-gray-700 block px-4 py-2 text-sm dropdown_link'
-                  >
-                    Sign Out
-                  </button>
-                </div>
-              </div>
-
-      
-        </DropdownMenuContent>
-      </DropdownMenu>
-
-
+                  </Button>
+                </Link>
+              </motion.div>
+            )}
           </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type='button'
-                  key={provider.name}
-                  onClick={() => {
-                    signIn(provider.id);
-                  }}
-                  className='black_btn'
-                >
-                  Sign in
-                </button>
-              ))}
-          </>
-        )}
+
+          {/* User Section */}
+          <div className="flex items-center space-x-4">
+            {session?.user ? (
+              <div className="flex items-center space-x-3">
+                {/* Notifications */}
+                <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+                  <Button variant="ghost" size="sm" className="relative p-2">
+                    <Bell className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+                    <span className="absolute -top-1 -right-1 w-3 h-3 bg-red-500 rounded-full"></span>
+                  </Button>
+                </motion.div>
+
+                {/* User Dropdown */}
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center space-x-3 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    >
+                      <Image
+                        src={session.user.image || '/assets/images/avatar.jpg'}
+                        width={40}
+                        height={40}
+                        className="rounded-full border-2 border-gray-200 dark:border-gray-700"
+                        alt="Profile"
+                      />
+                      <div className="hidden md:block text-left">
+                        <p className="text-sm font-medium text-gray-900 dark:text-white">
+                          {session.user.username || session.user.name}
+                        </p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          {session.user.email}
+                        </p>
+                      </div>
+                    </motion.button>
+                  </DropdownMenuTrigger>
+                  
+                  <DropdownMenuContent 
+                    align="end" 
+                    className="w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl"
+                  >
+                    <DropdownMenuLabel className="p-4">
+                      <div className="flex items-center space-x-3">
+                        <Image
+                          src={session.user.image || '/assets/images/avatar.jpg'}
+                          width={48}
+                          height={48}
+                          className="rounded-full border-2 border-gray-200 dark:border-gray-600"
+                          alt="Profile"
+                        />
+                        <div>
+                          <p className="font-semibold text-gray-900 dark:text-white">
+                            {session.user.username || session.user.name}
+                          </p>
+                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                            {session.user.email}
+                          </p>
+                        </div>
+                      </div>
+                    </DropdownMenuLabel>
+                    
+                    <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
+                    
+                    <div className="p-2">
+                      <DropdownMenuItem asChild>
+                        <Link href="/profile" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                          <User className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                          <span>My Profile</span>
+                        </Link>
+                      </DropdownMenuItem>
+                      
+                      <DropdownMenuItem asChild>
+                        <Link href="/settings" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                          <Settings className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                          <span>Settings</span>
+                        </Link>
+                      </DropdownMenuItem>
+                      
+                      <div className="md:hidden">
+                        <DropdownMenuSeparator className="my-2 bg-gray-200 dark:bg-gray-700" />
+                        <DropdownMenuItem asChild>
+                          <Link href="/create-prompt" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
+                            <Plus className="w-4 h-4 text-gray-600 dark:text-gray-300" />
+                            <span>Create Prompt</span>
+                          </Link>
+                        </DropdownMenuItem>
+                      </div>
+                    </div>
+                    
+                    <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
+                    
+                    <div className="p-2">
+                      <DropdownMenuItem 
+                        onClick={() => signOut()}
+                        className="flex items-center space-x-3 p-3 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 transition-colors cursor-pointer"
+                      >
+                        <LogOut className="w-4 h-4" />
+                        <span>Sign Out</span>
+                      </DropdownMenuItem>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-3">
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <motion.div
+                      key={provider.name}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      <Button
+                        onClick={() => signIn(provider.id)}
+                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                      >
+                        Sign In
+                      </Button>
+                    </motion.div>
+                  ))}
+              </div>
+            )}
+          </div>
+        </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

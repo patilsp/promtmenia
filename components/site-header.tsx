@@ -35,15 +35,14 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center justify-end gap-2"> 
-          <a className="text-gray-700 block px-4 py-2 text-sm">
-              <Link href='/create-prompt' className='dropdown_link'>
+            <Link href='/create-prompt' className='dropdown_link dark:text-white'>
                 Create Prompt
               </Link>
-            </a>         
+        
           <ModeToggle />
-          <div className="mt-2 hidden md:block">
+          {/* <div className="mt-2 hidden md:block">
             <CommandMenu />
-          </div>
+          </div> */}
         <div className="mt-1">
           <UserAccountNav />            
         </div>
