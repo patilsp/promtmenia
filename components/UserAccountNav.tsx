@@ -47,19 +47,19 @@ const UserAccountNav = () => {
               />
             </motion.button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className='w-64 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl' align='end'>
-            <DropdownMenuLabel className="p-4">
-              <div className="flex items-center space-x-3">
+          <DropdownMenuContent className='w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl rounded-xl' align='end'>
+            <DropdownMenuLabel className="p-2">
+              <div className="flex items-center">
                 <Image
                   src={session.user.image || "/assets/images/avatar.jpg"}
-                  width={48}
-                  height={48}
-                  className="rounded-full border-2 border-gray-200 dark:border-gray-600"
+                  width={40}
+                  height={40}
+                  className="rounded-full border-2 border-gray-200 dark:border-gray-600 mr-2"
                   alt="Profile"
                 />
                 <div>
                   <p className="font-semibold text-gray-900 dark:text-white">
-                    {session.user.username || session.user.name}
+                    {session.user.name}
                   </p>
                   <p className="text-sm text-gray-500 dark:text-gray-400">
                     {session.user.email}
@@ -69,7 +69,7 @@ const UserAccountNav = () => {
             </DropdownMenuLabel>
             <DropdownMenuSeparator className="bg-gray-200 dark:bg-gray-700" />
             
-            <div className="p-2">
+            <div className="space-y-2">
               <DropdownMenuItem asChild>
                 <Link href="/profile" className="flex items-center space-x-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors cursor-pointer">
                   <User className="w-4 h-4 text-gray-600 dark:text-gray-300" />

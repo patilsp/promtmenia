@@ -131,7 +131,7 @@ const PromptCard = ({ post, handleEdit, handleDelete, handleTagClick }) => {
       </div>
 
       {/* Footer */}
-      <div className="px-4 py-2 bg-gray-50 dark:bg-gray-750 border-t border-gray-100 dark:border-gray-700">
+      <div className="px-4 py-2 bg-gray-50 dark:bg-gray-750 border-t border-gray-100 dark:border-gray-700 dark:bg-gray-800">
         <div className="flex items-center justify-between">
            {/* Category Badge */}
         <div className="flex items-center gap-2">

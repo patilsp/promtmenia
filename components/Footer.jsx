@@ -1,27 +1,24 @@
-"use client"
-import React from 'react'
+// components/Footer.tsx
 
-const Footer = () => {
+import Link from "next/link";
+
+export default function Footer() {
   return (
-    <div>
-         <div className="w-full">
-                <div className="text-white py-10">
-                   
-                    <div className="mt-28 flex flex-col md:flex-row md:justify-between items-center text-sm text-gray-400">
-                        <p className="order-2 md:order-1 mt-8 md:mt-0"> &copy; Copyright, 2023. </p>
-                        <div className="order-1 md:order-2">
-                            <span className="px-2">About us</span>
-                            <span className="px-2 border-l">Contact us</span>
-                            <span className="px-2 border-l">Privacy Policy</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-           
-      
-    </div>
-  )
+    <footer className="w-full border-t mt-16 py-6 px-4 text-center text-sm text-muted-foreground">
+      <div className="flex flex-col sm:flex-row justify-between items-center max-w-4xl mx-auto gap-2">
+        <div>
+          &copy; {new Date().getFullYear()} <strong>AI Prompts Store</strong> by{" "}
+          <span className="font-medium text-primary">Santosh Patil</span>
+        </div>
+        <Link
+          href="https://github.com/patilsp/promtmenia"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-primary hover:underline"
+        >
+          ⭐ Give a star on GitHub
+        </Link>
+      </div>
+    </footer>
+  );
 }
-
-export default Footer
